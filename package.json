@@ -1,0 +1,30 @@
+{
+  "name": "facture",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.8.3",
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.1",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vue/cli-plugin-babel": "~5.0.0-beta.3",
+    "@vue/cli-plugin-eslint": "~5.0.0-beta.3",
+    "@vue/cli-plugin-router": "~5.0.0-beta.3",
+    "@vue/cli-plugin-vuex": "~5.0.0-beta.3",
+    "@vue/cli-service": "~5.0.0-beta.3",
+    "eslint": "^7.20.0",
+    "eslint-plugin-vue": "^7.6.0",
+    "sass": "^1.32.7",
+    "sass-loader": "^11.0.1",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
