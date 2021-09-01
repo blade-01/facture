@@ -1,8 +1,8 @@
 <template>
-  <div class="d-flex justify-space-between align-center filters mb-5 mt-2">
+  <div class="d-flex justify-space-between align-start filters mb-10 mt-7">
     <div>
       <h1>Invoices</h1>
-      <p class="grey--text" v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">{{allInvoices.length}} Invoices</p>
+      <p class="text--text" v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">{{allInvoices.length}} Invoices</p>
       <p v-else>There are {{allInvoices.length}} total Invoices</p>
     </div>
     <div class="filter_new d-flex justify-space-between align-center">

@@ -235,21 +235,21 @@ const state = {
 
 const getters = {
   allInvoices: (state) => state.invoices,
-  filterById: (state) => {
+  filterById(state) {
     return (id) => {
-    return state.invoices.find((invoice) => invoice.id === id)
+    return state.invoices.filter((invoice) => invoice.id === id)
     }
   }
 };
 
 const actions = {
   // filterById({commit}, id) {
-  //   commit('filterById', id)
+  //   commit('getInvoice', id)
   // }
 };
 
 const mutations = {
-  // filterById: (state, id) => state.invoices = state.invoices.filter(invoice => invoice.id == id)
+  // getInvoice: (state, id) => state.invoices.filter(invoice => invoice.id === id)
 }
 
 export default {

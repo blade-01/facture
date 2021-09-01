@@ -90,7 +90,7 @@
       </div>
     </div>
     <div class="item_list">
-      <h3 class="form--text font-weight-bold my-2 mt-4">Item List</h3>
+      <h3 class="font-weight-bold my-2 mt-4">Item List</h3>
       <div class="items" v-for="item in items" :key="item.index">
         <div class="input-field">
           <label class="form--text font-weight-bold" for="city">Item Name</label>
@@ -105,15 +105,15 @@
             <label class="form--text font-weight-bold" for="price">Price</label>
             <input type="number" required class="secondary pa-2 text--text"  id="price"/>
           </div>
-          <v-btn text class="text-capitalize text--text del-btn" @click="deleteItem"><v-icon>mdi-delete</v-icon></v-btn>
+          <v-btn text class="text-capitalize form--text del-btn" @click="deleteItem"><v-icon>mdi-delete</v-icon></v-btn>
         </div>
       </div>   
       <div class="text-capitalize form--text secondary rounded-pill pa-3 mt-5 d-block text-center add-btn my-3" @click="incrementItem"><v-icon class="form--text">mdi-plus</v-icon> Add New Item</div>
     </div>
     <div class="submit-button button-flex secondary pa-2 py-4 rounded-lg">
-      <v-btn class="text-capitalize text--text rounded-pill submit-btn primary font-weight-bold" depressed>Discard</v-btn>
-      <v-btn class="text-capitalize text--text rounded-pill submit-btn form font-weight-bold" depressed>Save as Draft</v-btn>
-      <v-btn class="text-capitalize text--text rounded-pill submit-btn btn font-weight-bold" depressed>save & Send</v-btn>
+      <v-btn class="text-capitalize rounded-pill submit-btn due font-weight-bold" depressed>Discard</v-btn>
+      <v-btn class="text-capitalize rounded-pill submit-btn form font-weight-bold" depressed>Save as Draft</v-btn>
+      <v-btn class="text-capitalize rounded-pill submit-btn btn font-weight-bold" depressed>save & Send</v-btn>
     </div>
   </v-form>
 </template>
@@ -160,7 +160,7 @@ export default {
     width: 100%;
     border-radius: 5px;
     margin: 0.4rem 0;
-    padding: 0.6rem 1rem !important;
+    padding: 0.7rem 1rem !important;
     border: solid 1px #514D57 !important;
     transition: ease 0.4s border;
   }
@@ -190,14 +190,19 @@ export default {
     margin: 0.2rem 0;
   }
 }
+.item_list h3 {
+  color: #777f98;
+}
 .button-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 3rem !important;
   .v-btn {
-    padding: 0.5rem !important;
+    padding: 0.2rem !important;
     margin: 0 !important;
+    font-size: 10px;
+    color: #ffffff !important;
     &:nth-child(2) {
       margin: 0 0.1rem !important;
     }

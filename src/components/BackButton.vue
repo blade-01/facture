@@ -1,7 +1,7 @@
 <template>
   <v-btn text class="primary text-capitalize back-btn text--text" @click="goHome">
     <v-icon class="btn--text">mdi-chevron-left</v-icon>
-    Go Home
+    Go Back
   </v-btn>
 </template>
 
@@ -10,7 +10,7 @@ export default {
   name: 'Back',
   methods: {
     goHome() {
-      this.$router.push({name: 'Invoice'})
+      this.$router.go(-1)
     }
   },
   created() {

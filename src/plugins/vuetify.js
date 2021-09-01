@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Vuetify from 'vuetify/lib/framework';
 
 Vue.use(Vuetify);
-
 export default new Vuetify({
   theme: {
     dark: true,
@@ -14,8 +13,8 @@ export default new Vuetify({
         chevron: '#270561',
         btn: '#7c5dfa',
         del: '#FA5D5D',
-        form: '#514D57',
-        due: '#141625'
+        form: '#888eb0',
+        due: '#888eb0'
       },
       dark: {
         text: '#FFFFFF',
@@ -24,8 +23,8 @@ export default new Vuetify({
         chevron: '#270561',
         btn: '#7c5dfa',
         del: '#FA5D5D',
-        form: '#514D57',
-        due: '#dfe3fa'
+        form: '#7e88c3',
+        due: '#7e88c3'
       }
     },
   },
