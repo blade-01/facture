@@ -1,32 +1,79 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-main class="primary text--text">
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
+<script>
+export default {
+  name: 'App',
+  components: {
+
+  },
+  data: () => ({
+    //
+  }),
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+html {
+  overflow-y: hidden;
 }
+body {
+  font-size: 15px;
+  line-height: 1.3;
+  &::-webkit-scrollbar {
+    width: 10px;
+    background: #141625;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #7c5dfa;
+    border-radius: 50px;
+  }
+}
+$light-bg: #f8f8fb;
+$purple-500: #7c5dfa;
+$purple-400: #9277ff;
 
-#nav {
-  padding: 30px;
+$blue-gray: #888eb0;
+$light-blue-gray: #dfe3fa;
+$dark-blue-gray: #7e88c3;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+$dark-500: #0c0e16;
+$dark-400: #141625;
+$dark-300: #1e2139;
+$dark-200: #252945;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+$warning: #ec5757;
+
+.bg-purple {
+  background: $purple-500;
+}
+a {
+  text-decoration: none;
+}
+.d-mobile {
+  display: block !important;
+}
+.d-desktop {
+  display: none !important;
+}
+@media screen and (min-width: 700px) {
+  .d-desktop {
+    display: block !important;
+  }
+  .d-mobile {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .auto-width {
+    width: 750px !important;
+    margin: auto;
+    overflow: hidden;
   }
 }
 </style>
