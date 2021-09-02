@@ -43,9 +43,6 @@ export default {
     newPage(id) {
       this.$router.push({name: 'single', params: {id}})
     }
-    // formatDate() {
-      
-    // }
   },
   mounted() {
 

@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import data from "@/json/data.json";
+import { mapActions } from 'vuex'
 export default {
   name: 'App',
   components: {
@@ -15,6 +17,16 @@ export default {
   data: () => ({
     //
   }),
+  methods: {
+    ...mapActions(['setInvoice']),
+  },
+  mounted() {
+    if (localStorage.getItem("invoices")) {
+      this.setInvoice(JSON.parse(localStorage.getItem("invoices")));
+    } else {
+      this.setInvoice(data);
+    }
+  }
 };
 </script>
 
@@ -22,7 +34,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;400&display=swap');
 .v-application {
   font-family: 'Spartan', sans-serif !important;
-  font-size: 12px !important;
+  font-size: 13px !important;
   line-height: 1.3 !important;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
@@ -100,12 +112,15 @@ a {
   .d-mobile {
     display: none !important;
   }
+  .auto-width {
+    width: 700px !important;
+    margin: auto;
+    overflow: hidden;
+  }
 }
 @media screen and (min-width: 1000px) {
   .auto-width {
     width: 750px !important;
-    margin: auto;
-    overflow: hidden;
   }
 }
 </style>
