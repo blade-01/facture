@@ -58,8 +58,7 @@
           <template v-slot:activator="{ on, attrs }">
             <label class="form--text font-weight-bold" for="date">Invoice Date</label>
             <v-text-field
-              rounded 
-              :value="computedDateFormattedDatefns"
+              rounded
               dense
               class="secondary pt-2"
               v-model="invoice.paymentDue"
@@ -119,7 +118,6 @@
 </template>
 
 <script>
-import { format, parseISO } from 'date-fns'
 import { mapActions } from 'vuex'
 export default {
   data: () => ({
@@ -167,9 +165,7 @@ export default {
     }
   }),
   computed: {
-    computedDateFormattedDatefns () {
-      return this.date ? format(parseISO(this.date), 'EEEE, MMMM do yyyy') : ''
-    },
+    
   },
   methods: {
     ...mapActions(['addInvoice']),
