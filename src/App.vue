@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import data from "@/json/data.json";
+import { mapActions } from 'vuex'
 export default {
   name: 'App',
   components: {
@@ -15,16 +17,29 @@ export default {
   data: () => ({
     //
   }),
+  methods: {
+    ...mapActions(['setInvoice']),
+  },
+  mounted() {
+    if (localStorage.getItem("invoices")) {
+      this.setInvoice(JSON.parse(localStorage.getItem("invoices")));
+    } else {
+      this.setInvoice(data);
+    }
+  }
 };
 </script>
 
 <style lang="scss">
-html {
-  overflow-y: hidden;
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;400&display=swap');
+.v-application {
+  font-family: 'Spartan', sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
 }
 body {
-  font-size: 15px;
-  line-height: 1.3;
   &::-webkit-scrollbar {
     width: 10px;
     background: #141625;
@@ -48,7 +63,36 @@ $dark-300: #1e2139;
 $dark-200: #252945;
 
 $warning: #ec5757;
-
+.status {
+  width: 120px;
+  font-weight: bold;
+  &.paid {
+    color: #33d69f !important;
+    background-color: hsla(160, 67%, 52%, 0.06);
+  }
+  &.pending {
+    color: #ff8f00 !important;
+    background-color: rgba(255, 145, 0, 0.06);
+  }
+  &.draft {
+    color: #424761 !important;
+    background-color: hsla(231, 19%, 29%, 0.06);
+  }
+}
+.dot {
+  height: 6px;
+  width: 6px;
+  border-radius: 100%;
+  &.paid {
+    background-color: #33d69f;
+  }
+  &.pending {
+    background-color: #ff8f00;
+  }
+  &.draft {
+    background-color: #424761;
+  }
+}
 .bg-purple {
   background: $purple-500;
 }
@@ -68,12 +112,15 @@ a {
   .d-mobile {
     display: none !important;
   }
+  .auto-width {
+    width: 700px !important;
+    margin: auto;
+    overflow: hidden;
+  }
 }
 @media screen and (min-width: 1000px) {
   .auto-width {
     width: 750px !important;
-    margin: auto;
-    overflow: hidden;
   }
 }
 </style>
