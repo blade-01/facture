@@ -60,28 +60,44 @@
             <v-text-field
               rounded
               dense
+              color="due"
               class="secondary pt-2"
-              v-model="invoice.paymentDue"
+              :value="formatDate"
               append-icon="mdi-calendar"
               readonly
               v-on="on"
               v-bind="attrs"></v-text-field>
           </template>
           <v-date-picker
-              v-model="invoice.paymentDue"
+              v-model="invoice.createdAt"
               @input="menu = false"></v-date-picker>
         </v-menu>
       </div>
       <div class="input-field">
         <label class="form--text font-weight-bold" for="project_description">Payment Terms</label>
-        <v-select
-          v-model="select"
-          :items="lists"
+        <v-select @change="showItem"
+          append-icon="mdi-chevron-down"
+          :items="net"
           required
+          attach
           dense
-          class="secondary pt-2"
           rounded
-        ></v-select>
+          class="secondary pt-2"
+          :item-text="(i) => `Net ${i} Days`"
+          :menu-props="{
+            transition: 'scroll-y-transition',
+            top: false,
+            offsetY: true,
+          }"
+          v-model="invoice.paymentTerms"
+        >
+          <template v-slot:item="{ item }"
+            >Net {{ item }} Days</template
+          >
+          <template v-slot:selection="{ item }"
+            ><b>Net {{ item }} Days</b></template
+          >
+        </v-select>
       </div>
       <div class="input-field">
         <label class="form--text font-weight-bold" for="project_description">Project Description</label>
@@ -98,20 +114,36 @@
         <div class="item-flex">
           <div class="input-field">
             <label class="form--text font-weight-bold" for="quantity">Qty.</label>
-            <input type="number" required class="secondary pa-2 text--text"  id="quantity" v-model="item.quantity"/>
+            <input type="number" required class="secondary pa-2 text--text"  id="quantity" v-model="item.quantity" @input="
+            (e) => {
+              item.total = item.price * e.target.value;
+              item.price ? item.total : e.target.value;
+            }
+            "/>
           </div>
           <div class="input-field">
             <label class="form--text font-weight-bold" for="price">Price</label>
-            <input type="number" required class="secondary pa-2 text--text"  id="price" v-model="item.price"/>
+            <input type="number" required class="secondary pa-2 text--text"  id="price" v-model="item.price" @input="
+            (e) => {
+              item.total = item.quantity * e.target.value;
+              item.quantity
+                ? (item.price = e.target.value)
+                : e.target.value;
+
+              invoice.total = item.total;
+            }"/>
           </div>
-          <v-btn text class="text-capitalize form--text del-btn" @click="deleteItem"><v-icon>mdi-delete</v-icon></v-btn>
+          <div class="input-field pt-8">
+            <p class="font-weight-bold">&#xa3;{{formatCurrency(item.total)}}</p>
+          </div>
+          <v-btn text class="text-capitalize form--text del-btn" @click="deleteItem(item)"><v-icon>mdi-delete</v-icon></v-btn>
         </div>
       </div>   
-      <div class="text-capitalize form--text secondary rounded-pill pa-3 mt-5 d-block text-center add-btn my-3" @click="incrementItem"><v-icon class="form--text">mdi-plus</v-icon> Add New Item</div>
+      <v-btn class="text-capitalize form--text secondary rounded-pill mt-5 text-center add-btn my-3" @click="incrementItem"><v-icon class="form--text">mdi-plus</v-icon> Add New Item</v-btn>
     </div>
     <div class="submit-button button-flex secondary pa-2 py-4 rounded-lg">
-      <v-btn class="text-capitalize rounded-pill submit-btn due font-weight-bold" depressed>Discard</v-btn>
-      <v-btn class="text-capitalize rounded-pill submit-btn form font-weight-bold" depressed>Save as Draft</v-btn>
+      <v-btn class="text-capitalize rounded-pill submit-btn due font-weight-bold" depressed @click="goHome">Discard</v-btn>
+      <v-btn class="text-capitalize rounded-pill submit-btn form font-weight-bold" depressed @click="onDraft">Save as Draft</v-btn>
       <v-btn class="text-capitalize rounded-pill submit-btn btn font-weight-bold" depressed @click="onSubmit">save & Send</v-btn>
     </div>
   </v-form>
@@ -119,19 +151,18 @@
 
 <script>
 import { mapActions } from 'vuex'
+import currencyFormatter from '@/mixins/formatCurrency'
+import moment from 'moment'
+import useVuelidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 export default {
   data: () => ({
-    date: null,
+    v$: useVuelidate(),
     menu: false,
     modal: false,
     items: 1,
     select: null,
-    lists: [
-      'Net 1 day',
-      'Net 7 days',
-      'Net 14 days',
-      'Net 30 days',
-    ],
+    net: [1, 7, 14, 30],
     invoice: {
       id: Math.random().toString(36).substring(7).toUpperCase(),
       createdAt: null,
@@ -156,33 +187,88 @@ export default {
       items: [
         {
           name: null,
-          quantity: '',
-          price: '',
+          quantity: null,
+          price: null,
           total: null
         }
       ],
-      total: null
+      total: 140000
     }
   }),
   computed: {
-    
+    formatDate() {
+      return this.invoice.createdAt ? moment(this.invoice.createdAt).format('D MMM YYYY') : ''
+    }
+  },
+  validations() {
+    return {
+      invoice: {
+        id: Math.random().toString(36).substring(7).toUpperCase(),
+        createdAt: { required },
+        paymentDue: { required },
+        description: { required },
+        paymentTerms: { required },
+        clientName: { required },
+        clientEmail: { required },
+        senderAddress: {
+          street: { required },
+          city: { required },
+          postCode: { required },
+          country: { required }
+        },
+        clientAddress: {
+          street: { required },
+          city: { required },
+          postCode: { required },
+          country: { required }
+        },
+        items: [
+          {
+            name: { required },
+            quantity: { required },
+            price: { required },
+          },
+        ],
+        total: 140000
+      }
+    }
   },
   methods: {
     ...mapActions(['addInvoice']),
-    // addInvoice
     onSubmit() {
-      // console.log(this.invoice)
-      this.addInvoice(this.invoice)
+      // console.log(this.v$)
+      this.v$.$validate
+      if(!this.v$.$invalid) {
+        console.log('successful')
+      } else {
+        console.log('oshi')
+      }
+      // this.addInvoice(this.invoice)
     },
     incrementItem() {
-      // this.invoice.items++
-      console.log(this.invoice.items)
+      this.invoice.items.push({
+        name: null,
+        quantity: null,
+        price: null,
+        total: null,
+      });
     },
-    deleteItem() {
-      // this.items = this.items.filter(item => item != item)
-      console.log('deleted')
-    }
-  }
+    deleteItem(i) {
+      this.invoice.items.splice(this.invoice.items.indexOf(i), 1);
+    },
+    showItem() {
+      console.log(this.invoice.net)
+    },
+    onDraft() {
+      this.invoice.status = 'draft'
+    },
+    goHome() {
+      this.$router.push('/')
+    },
+  },
+  mounted() {
+  },
+  mixins: [currencyFormatter]
 }
 </script>
 
@@ -196,7 +282,7 @@ export default {
     width: 100%;
     border-radius: 5px;
     margin: 0.4rem 0;
-    padding: 0.7rem 1rem !important;
+    padding: 0.8rem 1rem !important;
     border: solid 1px #514D57 !important;
     transition: ease 0.4s border;
   }
@@ -259,9 +345,11 @@ export default {
 }
 .add-btn {
   cursor: pointer;
+  width: 100%;
+  padding: 1.5rem !important;
 }
 .del-btn {
-  margin: 1.5rem 0 0 0 !important;
+  margin: 1rem 0 0 0 !important;
   padding: 0 !important;
 }
 input::-webkit-outer-spin-button,

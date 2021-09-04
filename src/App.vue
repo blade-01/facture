@@ -34,14 +34,14 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;400&display=swap');
 .v-application {
   font-family: 'Spartan', sans-serif !important;
-  font-size: 13px !important;
+  font-size: 12px !important;
   line-height: 1.3 !important;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
 }
 body {
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
     background: #141625;
   }
   &::-webkit-scrollbar-thumb {
