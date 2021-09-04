@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-space-between align-start filters mb-10 mt-7">
+  <div class="d-flex justify-space-between align-start filters mb-10 mt-7 px-2">
     <div>
       <h1>Invoices</h1>
       <p class="text--text" v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">{{allInvoices.length}} Invoices</p>
@@ -60,8 +60,13 @@ export default {
     left: 1rem;
     z-index: 100;
   }
+  &s h1 {
+    font-size: 23px;
+  }
 }
-.filters h1 {
-  font-size: 23px;
+@media screen and (min-width: 700px) {
+  .filters h1 {
+    font-size: 26px;
+  }
 }
 </style>

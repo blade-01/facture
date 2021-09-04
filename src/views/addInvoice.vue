@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
     <v-icon class="white--text close rounded-circle pa-2 d-desktop" @click="goHome">mdi-close</v-icon>
-    <div class="add primary">
+    <div class="add primary px-2">
       <v-container>
         <Back class="d-mobile" />
-        <h1>New Invoice</h1>
+        <h1 class="mt-5">New Invoice</h1>
         <Form />
       </v-container>  
     </div>
@@ -42,7 +42,7 @@ export default {
   overflow-y: scroll;
   animation: slideUp 0.4s forwards;
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
     background: #141625;
   }
   &::-webkit-scrollbar-thumb {
