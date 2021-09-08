@@ -1,8 +1,8 @@
 <template>
   <div class="invoice-wrapper px-2">
     <div class="d-mobile">
-      <v-card class="my-4 px-5 pb-0 pt-4 secondary rounded-lg invoice-card" v-for="invoice in allInvoices" :key="invoice.id" @click="newPage(invoice.id)" elevation="1">
-        <div class="d-flex justify-space-between mb-3">
+      <v-card class="my-4 px-5 pb-2 pt-5 secondary rounded-lg invoice-card" v-for="invoice in allInvoices" :key="invoice.id" @click="newPage(invoice.id)" elevation="1">
+        <div class="d-flex justify-space-between mb-3 align-center">
           <p class="font-weight-bold"><span class="hash">#</span>{{invoice.id}}</p>
           <p>{{invoice.clientName}}</p>
         </div>
@@ -11,7 +11,7 @@
             <p class="due--text">Due {{formatDate(invoice.paymentDue)}}</p>
             <p class="font-weight-bold price">&#xa3;{{invoice.total = formatCurrency(getGrandTotal(invoice.items))}}</p>
           </div>
-          <v-btn class="text-capitalize lighten-5 py-4" :class="`status ${invoice.status}`" text><span :class="`mr-3 dot ${invoice.status}`"></span> {{invoice.status}}</v-btn>
+          <v-btn class="text-capitalize lighten-5 py-5" :class="`status ${invoice.status}`" text><span :class="`mr-3 dot ${invoice.status}`"></span> {{invoice.status}}</v-btn>
         </div>
       </v-card>
     </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="right flex-item">
           <p class="font-weight-bold price">&#xa3;{{invoice.total = formatCurrency(getGrandTotal(invoice.items))}}</p>
-          <v-btn class="text-capitalize rounded pa-0 px-7" :class="`status ${invoice.status}`" text><span :class="`mr-3 dot ${invoice.status}`"></span> {{invoice.status}}</v-btn>
+          <v-btn class="text-capitalize rounded pa-0 px-7 py-5" :class="`status ${invoice.status}`" text><span :class="`mr-3 dot ${invoice.status}`"></span> {{invoice.status}}</v-btn>
           <v-icon class="btn--text">mdi-chevron-right</v-icon>
         </div>
       </v-card>
@@ -66,7 +66,7 @@ export default {
   color: #7e88c3;
 }
 p.price {
-  font-size: 17px;
+  font-size: 15px;
   letter-spacing: 1px;
 }
 .invoice-card {
@@ -92,9 +92,6 @@ p.price {
       justify-content: center;
       align-items: center;
     }
-  }
-  .right {
-    text-align: right;
   }
   p {
     margin: 0 !important;

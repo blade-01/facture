@@ -64,8 +64,9 @@ $dark-200: #252945;
 
 $warning: #ec5757;
 .status {
-  width: 120px;
+  width: 100px;
   font-weight: bold;
+  font-size: 12px !important;
   &.paid {
     color: #33d69f !important;
     background-color: hsla(160, 67%, 52%, 0.06);
@@ -112,15 +113,12 @@ a {
   .d-mobile {
     display: none !important;
   }
-  .auto-width {
-    width: 700px !important;
-    margin: auto;
-    overflow: hidden;
-  }
 }
 @media screen and (min-width: 1000px) {
   .auto-width {
-    width: 750px !important;
+    max-width: 780px !important;
+    margin: auto;
+    overflow: hidden;
   }
 }
 </style>

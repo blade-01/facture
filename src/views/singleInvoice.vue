@@ -5,7 +5,7 @@
         <Nav />
         <Back />
         <div v-for="invoice in filterById(id)" :key="invoice.id">
-          <v-card class="my-4 px-5 py-4 secondary rounded-lg flex">
+          <v-card class="my-4 px-5 py-5 secondary rounded-lg flex">
             <div class="d-flex align-center justify-space-between stats">
               <p>Status</p>
               <v-btn class="text-capitalize rounded pa-0 px-7" :class="`status ${invoice.status}`" text><span :class="`mr-3 dot ${invoice.status}`"></span> {{invoice.status}}</v-btn>
@@ -13,7 +13,7 @@
             <div class="button-tag d-desktop">
               <v-btn class="text-capitalize rounded-pill submit-btn due font-weight-bold white--text" depressed>Edit</v-btn>
               <v-btn class="text-capitalize rounded-pill submit-btn del font-weight-bold white--text" depressed @click="onDelete">Delete</v-btn>
-              <v-btn class="text-capitalize rounded-pill submit-btn btn font-weight-bold white--text" depressed @click="onMark">Mark as paid</v-btn>
+              <v-btn class="text-capitalize rounded-pill submit-btn btn font-weight-bold white--text" depressed @click="onMark" v-if="invoice.status !== 'paid'">Mark as paid</v-btn>
             </div>
           </v-card>
           <v-card class="my-4 px-5 pb-1 pt-5 secondary rounded-lg">
@@ -42,7 +42,7 @@
               </div>
               <div>
                 <h3 class="font-weight-light mb-3">Bill To</h3>
-                <p class="font-weight-bold">{{invoice.clientName}}</p>
+                <p class="font-weight-bold increase">{{invoice.clientName}}</p>
                 <p class="form--text">{{invoice.clientAddress.street}}</p>
                 <p class="form--text">{{invoice.clientAddress.city}}</p>
                 <p class="form--text">{{invoice.clientAddress.postCode}}</p>
@@ -50,7 +50,7 @@
               </div>
               <div>
                 <h3 class="font-weight-light mb-3">Sent To</h3>
-                <p class="font-weight-bold">{{invoice.clientEmail}}</p>
+                <p class="font-weight-bold increase">{{invoice.clientEmail}}</p>
               </div>
             </div>
             <v-card class="my-4 px-5 py-4 primary rounded-lg d-mobile">
@@ -59,13 +59,14 @@
                   <p class="pa-0 ma-0 mb-1">{{item.name}}</p>
                   <p class="form--text">{{item.quantity}} x &#xa3;{{formatCurrency(item.price)}}</p>
                 </div>
-                <p>&#xa3;{{formatCurrency(item.total)}}</p>
+                <p class="font-weight-bold">&#xa3;{{formatCurrency(item.total)}}</p>
               </div>
               <v-card class="secondary mt-2 px-5  pt-5 rounded-lg d-flex justify-space-between align-center">
                 <p>Grand Total</p>
-                <p>&#xa3;{{invoice.total = formatCurrency(getGrandTotal(invoice.items))}}</p>
+                <p class="font-weight-bold g-total">&#xa3;{{invoice.total = formatCurrency(getGrandTotal(invoice.items))}}</p>
               </v-card>
             </v-card>
+            <!-- Desktop -->
             <v-card class="my-4 px-5 py-4 primary rounded-lg d-desktop">
               <table>
                 <thead>
@@ -81,20 +82,20 @@
                     <td>{{item.name}}</td>
                     <td>{{item.quantity}}</td>
                     <td>&#xa3;{{formatCurrency(item.price)}}</td>
-                    <td>&#xa3;{{formatCurrency(item.total)}}</td>
+                    <td class="font-weight-bold">&#xa3;{{formatCurrency(item.total)}}</td>
                   </tr>
                 </tbody>
               </table>
               <v-card class="secondary mt-2 px-5  pt-5 rounded-lg d-flex justify-space-between align-center">
                 <p>Amount Due</p>
-                <p>&#xa3;{{invoice.total = formatCurrency(getGrandTotal(invoice.items))}}</p>
+                <p class="font-weight-bold g-total">&#xa3;{{invoice.total = formatCurrency(getGrandTotal(invoice.items))}}</p>
               </v-card>
             </v-card>
           </v-card>
-          <v-card class="d-mobile secondary mt-2 px-5 py-4 rounded-lg mobile-button">
+          <v-card class="d-mobile secondary mt-2 px-5 py-5 rounded-lg mobile-button">
               <v-btn class="text-capitalize rounded-pill submit-btn due font-weight-bold white--text" depressed>Edit</v-btn>
               <v-btn class="text-capitalize rounded-pill submit-btn del font-weight-bold white--text" depressed @click="onDelete">Delete</v-btn>
-              <v-btn class="text-capitalize rounded-pill submit-btn btn font-weight-bold white--text" depressed @click="onMark">Mark as paid</v-btn>
+              <v-btn class="text-capitalize rounded-pill submit-btn btn font-weight-bold white--text" depressed @click="onMark" v-if="invoice.status !== 'paid'">Mark as paid</v-btn>
           </v-card>
         </div>
       </v-container>
@@ -146,6 +147,12 @@ export default {
 .hash {
   color: #7e88c3;
 }
+.g-total {
+  font-size: 16px !important;
+}
+.increase {
+  font-size: 14px !important;
+}
 .stats {
   & p {
     margin: 0 !important;
@@ -176,12 +183,12 @@ export default {
   display: flex !important;
   justify-content: space-between;
   align-items: center;
-  // flex-wrap: wrap;
   .v-btn {
     margin: 0.1rem;
     flex-basis: 33.33%;
-    font-size: smaller;
+    font-size: 12px;
     padding: 0.5rem 1.5rem !important;
+    font-weight: bolder !important;
   }
 }
 @media screen and (min-width: 700px) {
@@ -216,7 +223,8 @@ export default {
       width: auto !important;
       height: auto !important;
       padding: 0.7rem !important;
-      font-size: small;
+      font-weight: bolder !important;
+      font-size: 12px;
       &:nth-child(2) {
         margin: 0 0.5rem !important;
       }
