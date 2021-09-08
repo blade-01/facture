@@ -4,12 +4,11 @@
   color="navbar"
   dark
   flat
-  class="px-2"
   >
   <router-link to="/">
     <v-btn icon class="btn pa-5">
       <v-img
-        alt="fature Logo"
+        alt="fature_logo"
         contain
         src="../assets/img/logo.svg"
         transition="scale-transition"
@@ -53,5 +52,13 @@ export default {
 }
 .navbar {
   background: #252945 !important;
+}
+.v-app-bar {
+  height: 72px !important;
+  padding: 0.6rem !important;
+  .v-toolbar__content {
+    padding: 0 !important;
+    height: 100% !important;
+  }
 }
 </style>

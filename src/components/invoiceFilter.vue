@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-space-between align-start filters mb-10 mt-7 px-2">
+  <div class="d-flex justify-space-between align-start filters mb-6 mt-4 px-2">
     <div>
       <h1>Invoices</h1>
       <p class="text--text" v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">{{allInvoices.length}} Invoices</p>
@@ -54,6 +54,9 @@ export default {
 <style scoped lang="scss">
 .filter {
   position: relative;
+  & .v-btn {  
+    font-size: 12px !important;
+  }
   &-list {
     position: absolute;
     top: 40px;
