@@ -2,129 +2,283 @@
   <v-form @submit.prevent>
     <p class="btn--text font-weight-bold my-2 mt-4">Bill From</p>
     <div class="input-field">
-      <label class="form--text font-weight-bold" for="street_address">Street Address</label>
-      <input type="text" required class="secondary pa-2 text--text" id="street_address" v-model="invoice.senderAddress.street" @input="$v.invoice.senderAddress.street.$touch()"/>
+      <label class="form--text font-weight-bold" for="street_address"
+        >Street Address</label
+      >
+      <input
+        type="text"
+        required
+        class="secondary pa-2 text--text"
+        :class="{err : $v.invoice.senderAddress.$error}"
+        id="street_address"
+        v-model="invoice.senderAddress.street"
+      />
     </div>
     <div class="form-flex">
       <div class="input-field">
         <label class="form--text font-weight-bold" for="city">City</label>
-        <input type="text" required class="secondary pa-2 text--text" id="city" v-model="invoice.senderAddress.city"/>
+        <input
+          type="text"
+          required
+          class="secondary pa-2 text--text"
+          :class="{err: $v.invoice.senderAddress.city.$error}"
+          id="city"
+          v-model="invoice.senderAddress.city"
+        />
       </div>
       <div class="input-field">
-        <label class="form--text font-weight-bold" for="post_code">Post Code</label>
-        <input type="text" required class="secondary pa-2 text--text"  id="post_code" v-model="invoice.senderAddress.postCode"/>
+        <label class="form--text font-weight-bold" for="post_code"
+          >Post Code</label
+        >
+        <input
+          type="text"
+          required
+          class="secondary pa-2 text--text"
+          :class="{err: $v.invoice.senderAddress.postCode.$error}"
+          id="post_code"
+          v-model="invoice.senderAddress.postCode"
+        />
       </div>
       <div class="input-field">
         <label class="form--text font-weight-bold" for="country">Country</label>
-        <input type="text" required class="secondary pa-2 text--text" id="country" v-model="invoice.senderAddress.country"/>
+        <input
+          type="text"
+          required
+          class="secondary pa-2 text--text"
+          :class="{err: $v.invoice.senderAddress.country.$error}"
+          id="country"
+          v-model="invoice.senderAddress.country"
+        />
       </div>
     </div>
     <p class="btn--text font-weight-bold my-2 mt-4">Bill To</p>
     <div class="input-field">
-      <label class="form--text font-weight-bold" for="name">Client's Name</label>
-      <input type="text" required class="secondary pa-2 text--text" id="name" v-model="invoice.clientName"/>
+      <label class="form--text font-weight-bold" for="name"
+        >Client's Name</label
+      >
+      <input
+        type="text"
+        required
+        class="secondary pa-2 text--text"
+        :class="{err: $v.invoice.clientName.$error}"
+        id="name"
+        v-model="invoice.clientName"
+        @blur="$v.invoice.clientName.$touch()"
+        @focus="$v.invoice.clientName.$reset()"
+      />
     </div>
     <div class="input-field">
-      <label class="form--text font-weight-bold" for="email">Client's Email</label>
-      <input type="email" required class="secondary pa-2 text--text"  id="email" v-model="invoice.clientEmail"/>
+      <label class="form--text font-weight-bold" for="email"
+        >Client's Email</label
+      >
+      <input
+        type="email"
+        required
+        class="secondary pa-2 text--text"
+        :class="{err: $v.invoice.clientEmail.$error}"
+        id="email"
+        v-model="$v.invoice.clientEmail.$model"
+      />
     </div>
     <div class="input-field">
-      <label class="form--text font-weight-bold" for="client_address">Street Address</label>
-      <input type="text" required class="secondary pa-2 text--text" id="client_address" v-model="invoice.clientAddress.street"/>
+      <label class="form--text font-weight-bold" for="client_address"
+        >Street Address</label
+      >
+      <input
+        type="text"
+        required
+        class="secondary pa-2 text--text"
+        :class="{err: $v.invoice.clientAddress.street.$error}"
+        id="client_address"
+        v-model="invoice.clientAddress.street"
+      />
     </div>
     <div class="form-flex">
       <div class="input-field">
-        <label class="form--text font-weight-bold" for="client_city">City</label>
-        <input type="text" required class="secondary pa-2 text--text" id="client_city" v-model="invoice.clientAddress.city"/>
+        <label class="form--text font-weight-bold" for="client_city"
+          >City</label
+        >
+        <input
+          type="text"
+          required
+          class="secondary pa-2 text--text"
+          :class="{err: $v.invoice.clientAddress.city.$error}"
+          id="client_city"
+          v-model="invoice.clientAddress.city"
+        />
       </div>
       <div class="input-field">
-        <label class="form--text font-weight-bold" for="client_post_code">Post Code</label>
-        <input type="text" required class="secondary pa-2 text--text" id="client_post_code" v-model="invoice.clientAddress.postCode"/>
+        <label class="form--text font-weight-bold" for="client_post_code"
+          >Post Code</label
+        >
+        <input
+          type="text"
+          required
+          class="secondary pa-2 text--text"
+          :class="{err: $v.invoice.clientAddress.postCode.$error}"
+          id="client_post_code"
+          v-model="invoice.clientAddress.postCode"
+        />
       </div>
       <div class="input-field">
-        <label class="form--text font-weight-bold" for="client_country">Country</label>
-        <input type="text" required class="secondary pa-2 text--text" id="client_country" v-model="invoice.clientAddress.country"/>
+        <label class="form--text font-weight-bold" for="client_country"
+          >Country</label
+        >
+        <input
+          type="text"
+          required
+          class="secondary pa-2 text--text"
+          :class="{err: $v.invoice.clientAddress.country.$error}"
+          id="client_country"
+          v-model="invoice.clientAddress.country"
+        />
       </div>
     </div>
     <div class="input-field">
       <v-menu
-      v-model="menu"
-      :close-on-content-click="false"
-      :nudge-right="40"
-      transition="scale-transition"
-      offset-y
-      min-width="auto">
+        v-model="menu"
+        :close-on-content-click="false"
+        :nudge-right="40"
+        transition="scale-transition"
+        offset-y
+        min-width="auto"
+      >
         <template v-slot:activator="{ on, attrs }">
-          <label class="form--text font-weight-bold" for="date">Invoice Date</label>
+          <label class="form--text font-weight-bold" for="date"
+            >Invoice Date</label
+          >
           <v-text-field
             rounded
             dense
             color="due"
             class="secondary pt-2"
+            :class="{err: $v.invoice.paymentDue.$error}"
             :value="formatDate"
             append-icon="mdi-calendar"
             readonly
             v-on="on"
-            v-bind="attrs"></v-text-field>
+            v-bind="attrs"
+          ></v-text-field>
         </template>
         <v-date-picker
-            v-model="invoice.paymentDue"
-            @input="menu = false"></v-date-picker>
+          v-model="invoice.paymentDue"
+          @input="menu = false"
+        ></v-date-picker>
       </v-menu>
     </div>
     <div class="input-field">
-      <label class="form--text font-weight-bold" for="project_description">Project Description</label>
-      <input type="text" required class="secondary pa-2 text--text" id="project_description" v-model="invoice.description"/>
+      <label class="form--text font-weight-bold" for="project_description"
+        >Project Description</label
+      >
+      <input
+        type="text"
+        required
+        class="secondary pa-2 text--text"
+        :class="{err: $v.invoice.description.$error}"
+        id="project_description"
+        v-model="invoice.description"
+      />
     </div>
     <div class="item_list">
       <h3 class="font-weight-bold my-2 mt-4">Item List</h3>
       <div class="items" v-for="item in invoice.items" :key="item.index">
         <div class="input-field">
-          <label class="form--text font-weight-bold" for="city">Item Name</label>
-          <input type="text" required class="secondary pa-2 text--text" id="item_name" v-model="item.name"/>
+          <label class="form--text font-weight-bold" for="city"
+            >Item Name</label
+          >
+          <input
+            type="text"
+            required
+            class="secondary pa-2 text--text"
+            id="item_name"
+            v-model="item.name"
+          />
         </div>
         <div class="item-flex">
           <div class="input-field">
-            <label class="form--text font-weight-bold" for="quantity">Qty.</label>
-            <input type="number" required class="secondary pa-2 text--text"  id="quantity" v-model="item.quantity" @input="
-            (e) => {
-              item.total = item.price * e.target.value;
-              item.price ? item.total : e.target.value;
-            }
-            "/>
+            <label class="form--text font-weight-bold" for="quantity"
+              >Qty.</label
+            >
+            <input
+              type="number"
+              required
+              class="secondary pa-2 text--text"
+              id="quantity"
+              v-model="item.quantity"
+              @input="
+                (e) => {
+                  item.total = item.price * e.target.value;
+                  item.price ? item.total : e.target.value;
+                }
+              "
+            />
           </div>
           <div class="input-field">
             <label class="form--text font-weight-bold" for="price">Price</label>
-            <input type="number" required class="secondary pa-2 text--text"  id="price" v-model="item.price" @input="
-            (e) => {
-              item.total = item.quantity * e.target.value;
-              item.quantity
-                ? (item.price = e.target.value)
-                : e.target.value;
+            <input
+              type="number"
+              required
+              class="secondary pa-2 text--text"
+              id="price"
+              v-model="item.price"
+              @input="
+                (e) => {
+                  item.total = item.quantity * e.target.value;
+                  item.quantity
+                    ? (item.price = e.target.value)
+                    : e.target.value;
 
-              invoice.total = item.total;
-            }"/>
+                  invoice.total = item.total;
+                }
+              "
+            />
           </div>
           <div class="input-field pt-8">
-            <p class="font-weight-bold">&#xa3;{{formatCurrency(item.total)}}</p>
+            <p class="font-weight-bold">
+              &#xa3;{{ formatCurrency(item.total) }}
+            </p>
           </div>
-          <v-btn text class="text-capitalize form--text del-btn" @click="deleteItem(item)"><v-icon>mdi-delete</v-icon></v-btn>
+          <v-btn
+            text
+            class="text-capitalize form--text del-btn"
+            @click="deleteItem(item)"
+            ><v-icon>mdi-delete</v-icon></v-btn
+          >
         </div>
-      </div>   
-      <v-btn class="text-capitalize form--text secondary rounded-pill mt-5 text-center add-btn my-3" @click="incrementItem"><v-icon class="form--text">mdi-plus</v-icon> Add New Item</v-btn>
+      </div>
+      <v-btn
+        class="text-capitalize form--text secondary rounded-pill mt-5 text-center add-btn my-3"
+        @click="incrementItem"
+        ><v-icon class="form--text">mdi-plus</v-icon> Add New Item</v-btn
+      >
     </div>
     <div class="submit-button button-flex secondary pa-2 py-4 rounded-lg">
-      <v-btn class="text-capitalize rounded-pill submit-btn due font-weight-bold" depressed @click="goHome">Discard</v-btn>
-      <v-btn class="text-capitalize rounded-pill submit-btn form font-weight-bold" depressed @click="onDraft">Save as Draft</v-btn>
-      <v-btn class="text-capitalize rounded-pill submit-btn btn font-weight-bold" depressed @click="submitForm">save & Send</v-btn>
+      <v-btn
+        class="text-capitalize rounded-pill submit-btn due font-weight-bold"
+        depressed
+        @click="goHome"
+        >Discard</v-btn
+      >
+      <v-btn
+        class="text-capitalize rounded-pill submit-btn form font-weight-bold"
+        depressed
+        @click="onDraft"
+        >Save as Draft</v-btn
+      >
+      <v-btn
+        class="text-capitalize rounded-pill submit-btn btn font-weight-bold"
+        depressed
+        @click="submitForm"
+        >save & Send</v-btn
+      >
     </div>
   </v-form>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import currencyFormatter from '@/mixins/formatCurrency'
-import moment from 'moment'
+import { mapActions } from "vuex";
+import currencyFormatter from "@/mixins/formatCurrency";
+import moment from "moment";
 import { validationMixin } from "vuelidate";
 import { required, email } from "vuelidate/lib/validators";
 export default {
@@ -135,39 +289,44 @@ export default {
     select: null,
     net: [1, 7, 14, 30],
     invoice: {
-      id: Math.random().toString(36).substring(7).toUpperCase(),
+      id: Math.random()
+        .toString(36)
+        .substring(7)
+        .toUpperCase(),
       paymentDue: null,
       description: null,
       clientName: null,
       clientEmail: null,
-      status: 'pending',
+      status: "pending",
       senderAddress: {
         street: null,
         city: null,
         postCode: null,
-        country: null
+        country: null,
       },
       clientAddress: {
         street: null,
         city: null,
         postCode: null,
-        country: null
+        country: null,
       },
       items: [
         {
           name: null,
           quantity: null,
           price: null,
-          total: null
-        }
+          total: null,
+        },
       ],
-      total: null
-    }
+      total: null,
+    },
   }),
   computed: {
     formatDate() {
-      return this.invoice.paymentDue ? moment(this.invoice.paymentDue).format('DD MMM YYYY') : ''
-    }
+      return this.invoice.paymentDue
+        ? moment(this.invoice.paymentDue).format("DD MMM YYYY")
+        : "";
+    },
   },
   validations: {
     invoice: {
@@ -179,13 +338,13 @@ export default {
         street: { required },
         city: { required },
         postCode: { required },
-        country: { required }
+        country: { required },
       },
       clientAddress: {
         street: { required },
         city: { required },
         postCode: { required },
-        country: { required }
+        country: { required },
       },
       items: {
         $each: {
@@ -194,18 +353,22 @@ export default {
           price: { required },
         },
       },
-    }
+    },
   },
   methods: {
-    ...mapActions(['addInvoice']),
+    ...mapActions(["addInvoice"]),
+    // setName(value) {
+    //   this.invoice.clientName = value
+    //   this.$v.invoice.clientName.$touch()
+    // },
     submitForm() {
-      this.$v.$touch()
-      if(this.$v.$invalid) {
-        console.log('oshi')
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        console.log("oshi");
       } else {
-        console.log('successful')
-        this.addInvoice(this.invoice)
-        this.goHome()
+        console.log("successful");
+        this.addInvoice(this.invoice);
+        this.goHome();
       }
     },
     incrementItem() {
@@ -220,20 +383,19 @@ export default {
       this.invoice.items.splice(this.invoice.items.indexOf(i), 1);
     },
     showItem() {
-      console.log(this.invoice.net)
+      console.log(this.invoice.net);
     },
     onDraft() {
-      this.invoice.status = 'draft'
-      this.submitForm()
+      this.invoice.status = "draft";
+      this.submitForm();
     },
     goHome() {
-      this.$router.push('/')
+      this.$router.push("/");
     },
   },
-  mounted() {
-  },
-  mixins: [currencyFormatter, validationMixin]
-}
+  mounted() {},
+  mixins: [currencyFormatter, validationMixin],
+};
 </script>
 
 <style scoped lang="scss">
@@ -247,11 +409,18 @@ export default {
     border-radius: 5px;
     margin: 0.5rem 0 1rem;
     padding: 1rem !important;
-    border: solid 1px #888eb0 !important;
+    border: solid 1px #252945 !important;
     transition: ease 0.4s border;
+    .theme--light & {
+      color: #0c0e16 !important;
+      border: solid 1px #dfe3fa !important;
+    }
   }
   input:focus {
     border: solid 1px #7c5dfa !important;
+  }
+  .err {
+    border: solid 1px #FA5D5D !important;
   }
 }
 .form-flex {
@@ -332,7 +501,7 @@ input[type="number"] {
     .input-field {
       flex-basis: 32.5%;
       &:last-child {
-      flex-basis: 32.5%;
+        flex-basis: 32.5%;
       }
     }
   }

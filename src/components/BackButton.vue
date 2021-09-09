@@ -1,5 +1,9 @@
 <template>
-  <v-btn text class="primary text-capitalize back-btn text--text" @click="goHome">
+  <v-btn
+    text
+    class="primary text-capitalize back-btn text--text mt-4"
+    @click="goHome"
+  >
     <v-icon class="btn--text">mdi-chevron-left</v-icon>
     Go Back
   </v-btn>
@@ -7,15 +11,14 @@
 
 <script>
 export default {
-  name: 'Back',
+  name: "Back",
   methods: {
     goHome() {
-      this.$router.go(-1)
-    }
+      this.$router.go(-1);
+    },
   },
-  created() {
-  }
-}
+  created() {},
+};
 </script>
 
 <style scoped lang="scss">
