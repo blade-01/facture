@@ -67,7 +67,7 @@ export default {
 }
 p.price {
   font-size: 15px;
-  letter-spacing: 1px;
+  font-weight: bolder !important;
 }
 .invoice-card {
   transition: ease-in-out 0.5s border;

@@ -1,60 +1,67 @@
 <template>
-  <div class="d-flex justify-space-between align-start filters mb-6 mt-4 px-2">
+  <div class="d-flex justify-space-between align-start filters my-6 px-2">
     <div>
       <h1>Invoices</h1>
-      <p class="text--text" v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">{{allInvoices.length}} Invoices</p>
-      <p v-else>There are {{allInvoices.length}} total Invoices</p>
+      <p
+        class="text--text"
+        v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm"
+      >
+        {{ allInvoices.length }} Invoices
+      </p>
+      <p v-else>There are {{ allInvoices.length }} total Invoices</p>
     </div>
     <div class="filter_new d-flex justify-space-between align-center">
       <div class="filter">
-        <v-btn text class="d-inline text-capitalize">{{
+        <v-btn text class="d-inline text-capitalize"
+          >{{
             $vuetify.breakpoint.xs || $vuetify.breakpoint.sm
               ? "Filter"
               : "Filter by status"
           }}
-        <v-icon class="btn--text"> mdi-chevron-down </v-icon></v-btn>
+          <v-icon class="btn--text"> mdi-chevron-down </v-icon></v-btn
+        >
         <!-- <div class="filter-list btn pa-2 rounded">
           miroc
         </div> -->
       </div>
-      <v-btn class="rounded-pill btn py-5 pl-1 pr-3 text-capitalize white--text" @click="newInvoice">
-      <v-icon class="rounded-circle white btn--text mr-2 pa-1">
-        mdi-plus
-      </v-icon>
-      {{
-        $vuetify.breakpoint.xs || $vuetify.breakpoint.sm
-          ? "New"
-          : "New Invoice"
-      }}
+      <v-btn
+        class="rounded-pill btn py-5 pl-1 pr-3 text-capitalize white--text"
+        @click="newInvoice"
+      >
+        <v-icon class="rounded-circle white btn--text mr-2 pa-1">
+          mdi-plus
+        </v-icon>
+        {{
+          $vuetify.breakpoint.xs || $vuetify.breakpoint.sm
+            ? "New"
+            : "New Invoice"
+        }}
       </v-btn>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 export default {
-  name: 'Invoices',
-  components: {
-  },
+  name: "Invoices",
+  components: {},
   computed: {
-    ...mapGetters(['allInvoices'])
+    ...mapGetters(["allInvoices"]),
   },
   methods: {
     newInvoice() {
-      this.$router.push({name: 'add'})
-    }
+      this.$router.push({ name: "add" });
+    },
   },
-  mounted() {
-
-  }
-}
+  mounted() {},
+};
 </script>
 
 <style scoped lang="scss">
 .filter {
   position: relative;
-  & .v-btn {  
+  & .v-btn {
     font-size: 12px !important;
   }
   &-list {
