@@ -10,7 +10,7 @@
       <v-img
         alt="fature_logo"
         contain
-        src="../assets/img/logo.svg"
+        src="@/assets/img/logo.svg"
         transition="scale-transition"
         width="40"
       />

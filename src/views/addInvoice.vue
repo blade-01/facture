@@ -4,7 +4,7 @@
     <div class="add primary px-2">
       <v-container>
         <Back class="d-mobile" />
-        <h1 class="mt-5">New Invoice</h1>
+        <h1 class="mt-5">New</h1>
         <Form />
       </v-container>  
     </div>
@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import Form from '@/components/Form.vue'
-import Back from '@/components/BackButton.vue'
+import Form from '@/components/forms/createForm.vue'
+import Back from '@/components/reuseables_/BackButton.vue'
 export default {
   name: 'Add',
   components: {
@@ -23,11 +23,8 @@ export default {
   methods: {
     goHome() {
       this.$router.push({name: 'Invoice'})
-    }
+    },
   },
-  created() {
-    this.open = true;
-  }
 }
 </script>
 
@@ -38,7 +35,7 @@ export default {
   position: fixed;
   left: 0;
   bottom: -100%;
-  z-index: 100;
+  z-index: 1000;
   overflow-y: scroll;
   animation: slideUp 0.4s forwards;
   &::-webkit-scrollbar {
@@ -85,9 +82,8 @@ export default {
   }
   .close {
     position: absolute;
-    right: 10%;
-    top: 50%;
-    transform: translate(-10%, -50%);
+    right: 35%;
+    top: 12%;
     border: solid 2px #7c5dfa;
     transition: ease background 0.5s;
     cursor: pointer;

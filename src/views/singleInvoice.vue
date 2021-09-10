@@ -1,5 +1,6 @@
 <template>
   <div class="single px-2 mt-6">
+    <router-view></router-view>
     <div class="auto-width">
       <v-container>
         <Nav />
@@ -20,6 +21,7 @@
               <v-btn
                 class="text-capitalize rounded-pill submit-btn due font-weight-bold white--text"
                 depressed
+                @click="editInvoice"
                 >Edit</v-btn
               >
               <v-btn
@@ -155,6 +157,7 @@
             <v-btn
               class="text-capitalize rounded-pill submit-btn due font-weight-bold white--text"
               depressed
+              @click="editInvoice"
               >Edit</v-btn
             >
             <v-btn
@@ -178,8 +181,8 @@
 </template>
 
 <script>
-import Nav from "@/components/Navbar.vue";
-import Back from "@/components/BackButton.vue";
+import Nav from "@/components/reuseables_/Navbar.vue";
+import Back from "@/components/reuseables_/BackButton.vue";
 import grandTotal from "@/mixins/getTotal";
 import currencyFormatter from "@/mixins/formatCurrency";
 import scrollToTop from "@/mixins/scrollToTop";
@@ -207,6 +210,9 @@ export default {
         status: "paid",
       });
     },
+    editInvoice() {
+      this.$router.push({ name: "edit" })
+    }
   },
   created() {
     this.toTop()
