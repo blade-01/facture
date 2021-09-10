@@ -311,7 +311,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import currencyFormatter from "@/mixins/formatCurrency";
 import moment from "moment";
 import { validationMixin } from "vuelidate";
@@ -357,6 +357,7 @@ export default {
     },
   }),
   computed: {
+    ...mapGetters(["filterById"]),
     formatDate() {
       return this.invoice.paymentDue
         ? moment(this.invoice.paymentDue).format("DD MMM YYYY")
@@ -391,13 +392,15 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["addInvoice"]),
+    ...mapActions(["updateInvoice"]),
     submitForm() {
       if (this.$v.$invalid) {
         this.$v.$touch();
       } else {
-        console.log("successful");
-        this.addInvoice(this.invoice);
+        this.updateInvoice({
+          id: this.$route.params.id,
+          data: this.invoice
+        });
         this.goHome();
       }
     },
@@ -412,18 +415,17 @@ export default {
     deleteItem(i) {
       this.invoice.items.splice(this.invoice.items.indexOf(i), 1);
     },
-    showItem() {
-      console.log(this.invoice.net);
-    },
     onDraft() {
       this.invoice.status = "draft";
       this.submitForm();
     },
     goHome() {
-      this.$router.push("/");
+      this.$router.push({name: 'single'});
     },
   },
-  mounted() {},
+  mounted() {
+    this.invoice  = this.filterById(this.$route.params.id)[0]
+  },
   mixins: [currencyFormatter, validationMixin],
 };
 </script>
@@ -452,6 +454,9 @@ export default {
   }
   .err {
     border: solid 1px #FA5D5D !important;
+    .theme--light & {
+      border: solid 1px #FA5D5D !important;
+    }
   }
   .err-mssg {
     color: #FA5D5D !important;

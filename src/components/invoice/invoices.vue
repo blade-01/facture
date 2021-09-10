@@ -3,7 +3,13 @@
     <router-view></router-view>
     <Navbar />
     <invoice-filter />
-    <invoice-list />
+    <div v-if="allInvoices.length">
+      <invoice-list />
+    </div>
+    <div v-else class="text-center">
+      <img src="@/assets/img/empty.png" class="mt-9 mb-5"/>
+      <p>You've got no invoice here fam, add something</p>
+    </div>
   </v-container>
 </template>
 
@@ -37,5 +43,9 @@ export default {
   top: 40px;
   left: 1rem;
   z-index: 100;
+}
+img {
+  width: 200px;
+  border-radius: 50%;
 }
 </style>

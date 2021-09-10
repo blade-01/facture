@@ -20,8 +20,10 @@
           }}
           <v-icon class="btn--text"> mdi-chevron-down </v-icon></v-btn
         >
-        <!-- <div class="filter-list btn pa-2 rounded">
-          miroc
+        <!-- <div class="filter-list secondary pa-2 px-5 rounded">
+          <p>Paid</p>
+          <p>Draft</p>
+          <p>Unpaid</p>
         </div> -->
       </div>
       <v-btn
@@ -63,11 +65,12 @@ export default {
   position: relative;
   & .v-btn {
     font-size: 12px !important;
+    padding: 0 0.2rem 0 0 !important;
   }
   &-list {
     position: absolute;
     top: 40px;
-    left: 1rem;
+    left: 0;
     z-index: 100;
   }
   &s h1 {
