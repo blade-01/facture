@@ -4,7 +4,10 @@
     <div class="add primary px-2">
       <v-container>
         <Back class="d-mobile" />
-        <h1 class="mt-5">Edit <span><span class="hash">#</span>{{id}}</span></h1>
+        <div class="d-flex align-center mt-5">
+          <h1>Edit</h1>
+          <p><span class="hash">#</span>{{id}}</p>
+        </div>
         <Form />
       </v-container>  
     </div>
@@ -46,6 +49,15 @@ export default {
   &::-webkit-scrollbar-thumb {
     background: #7c5dfa;
     border-radius: 50px;
+  }
+  p {
+    margin: 0 0 0 0.5rem !important;
+    padding: 0 !important;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .hash {
+    color: #7e88c3;
   }
 } 
 @keyframes slideUp {

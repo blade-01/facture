@@ -14,7 +14,7 @@ export default {
   name: "Back",
   methods: {
     goHome() {
-      this.$router.go(-1);
+      this.$router.push('/');
     },
   },
   created() {},

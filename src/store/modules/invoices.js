@@ -34,6 +34,10 @@ const actions = {
   markAsPaid({commit}, {id, status}) {
     commit('markAsPaid', {id, status})
     saveInvoice()
+  },
+  updateInvoice({commit}, {id, data}) {
+    commit('updateInvoice', {id, data})
+    saveInvoice()
   }
 };
 
@@ -53,7 +57,11 @@ const mutations = {
   markAsPaid(state, {id, status}) {
     const index = state.invoices.findIndex((invoice) => invoice.id ===  id)
     state.invoices[index].status = status
-  }
+  },
+  updateInvoice(state, { id, data }) {
+    const index = state.invoices.findIndex((invoice) => invoice.id === id);
+    state.invoices[index] = data
+  },
 }
 
 export default {

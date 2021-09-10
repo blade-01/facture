@@ -396,7 +396,6 @@ export default {
       if (this.$v.$invalid) {
         this.$v.$touch();
       } else {
-        console.log("successful");
         this.addInvoice(this.invoice);
         this.goHome();
       }
@@ -452,6 +451,9 @@ export default {
   }
   .err {
     border: solid 1px #FA5D5D !important;
+    .theme--light & {
+      border: solid 1px #FA5D5D !important;
+    }
   }
   .err-mssg {
     color: #FA5D5D !important;

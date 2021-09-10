@@ -49,6 +49,17 @@ body {
     border-radius: 50px;
   }
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 30px #252945 inset;
+  -webkit-text-fill-color: #ffffff;
+  .theme--light & {
+    -webkit-box-shadow: 0 0 0px 30px #ffffff inset;
+    -webkit-text-fill-color: #252945;
+  }
+}
+
 $light-bg: #f8f8fb;
 $purple-500: #7c5dfa;
 $purple-400: #9277ff;
@@ -113,12 +124,15 @@ a {
   .d-mobile {
     display: none !important;
   }
+  .auto-width {
+    max-width: 750px !important;
+    margin: auto;
+    overflow: hidden;
+  }
 }
 @media screen and (min-width: 1000px) {
   .auto-width {
     max-width: 780px !important;
-    margin: auto;
-    overflow: hidden;
   }
 }
 </style>
