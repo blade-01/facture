@@ -21,6 +21,12 @@
     <v-icon v-if="$vuetify.theme.dark" class="icon">mdi-white-balance-sunny</v-icon>
     <v-icon v-else class="icon">mdi-moon-waxing-crescent</v-icon>
   </v-btn>
+  <img
+    class="avatar ml-4"
+    alt="avatar"
+    src="@/assets/img/image-avatar.jpg"
+    width="40"
+  />
 </v-app-bar>
 </template>
 
@@ -60,5 +66,12 @@ export default {
     padding: 0 !important;
     height: 100% !important;
   }
+}
+.v-btn {
+  border-right: dashed 2px #7e88c3;
+}
+.avatar {
+  border-radius: 50%;
+  width: 30px;
 }
 </style>
