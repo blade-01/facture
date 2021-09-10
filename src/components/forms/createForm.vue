@@ -9,10 +9,13 @@
         type="text"
         required
         class="secondary pa-2 text--text"
-        :class="{err : $v.invoice.senderAddress.$error}"
+        :class="{err : $v.invoice.senderAddress.street.$error}"
         id="street_address"
         v-model="invoice.senderAddress.street"
+        @blur="$v.invoice.senderAddress.street.$touch()"
+        @focus="$v.invoice.senderAddress.street.$reset()"
       />
+      <small :class="{'err-mssg' : $v.invoice.senderAddress.street.$error}" class="hide">required</small>
     </div>
     <div class="form-flex">
       <div class="input-field">
@@ -24,7 +27,10 @@
           :class="{err: $v.invoice.senderAddress.city.$error}"
           id="city"
           v-model="invoice.senderAddress.city"
+          @blur="$v.invoice.senderAddress.city.$touch()"
+          @focus="$v.invoice.senderAddress.city.$reset()"
         />
+        <small :class="{'err-mssg' : $v.invoice.senderAddress.city.$error}" class="hide">required</small>
       </div>
       <div class="input-field">
         <label class="form--text font-weight-bold" for="post_code"
@@ -37,7 +43,10 @@
           :class="{err: $v.invoice.senderAddress.postCode.$error}"
           id="post_code"
           v-model="invoice.senderAddress.postCode"
+          @blur="$v.invoice.senderAddress.postCode.$touch()"
+          @focus="$v.invoice.senderAddress.postCode.$reset()"
         />
+        <small :class="{'err-mssg' : $v.invoice.senderAddress.postCode.$error}" class="hide">required</small>
       </div>
       <div class="input-field">
         <label class="form--text font-weight-bold" for="country">Country</label>
@@ -48,11 +57,14 @@
           :class="{err: $v.invoice.senderAddress.country.$error}"
           id="country"
           v-model="invoice.senderAddress.country"
+          @blur="$v.invoice.senderAddress.country.$touch()"
+          @focus="$v.invoice.senderAddress.country.$reset()"
         />
+        <small :class="{'err-mssg' : $v.invoice.senderAddress.country.$error}" class="hide">required</small>
       </div>
     </div>
     <p class="btn--text font-weight-bold my-2 mt-4">Bill To</p>
-    <div class="input-field">
+    <div class="input-field mb-6">
       <label class="form--text font-weight-bold" for="name"
         >Client's Name</label
       >
@@ -66,8 +78,9 @@
         @blur="$v.invoice.clientName.$touch()"
         @focus="$v.invoice.clientName.$reset()"
       />
+      <small :class="{'err-mssg' : $v.invoice.clientName.$error}" class="hide">required</small>
     </div>
-    <div class="input-field">
+    <div class="input-field mb-6">
       <label class="form--text font-weight-bold" for="email"
         >Client's Email</label
       >
@@ -78,9 +91,12 @@
         :class="{err: $v.invoice.clientEmail.$error}"
         id="email"
         v-model="$v.invoice.clientEmail.$model"
+        @blur="$v.invoice.clientEmail.$touch()"
+        @focus="$v.invoice.clientEmail.$reset()"
       />
+      <small :class="{'err-mssg' : $v.invoice.clientEmail.$error}" class="hide">required</small>
     </div>
-    <div class="input-field">
+    <div class="input-field mb-6">
       <label class="form--text font-weight-bold" for="client_address"
         >Street Address</label
       >
@@ -91,7 +107,10 @@
         :class="{err: $v.invoice.clientAddress.street.$error}"
         id="client_address"
         v-model="invoice.clientAddress.street"
+        @blur="$v.invoice.clientAddress.street.$touch()"
+        @focus="$v.invoice.clientAddress.street.$reset()"
       />
+      <small :class="{'err-mssg' : $v.invoice.clientAddress.street.$error}" class="hide">required</small>
     </div>
     <div class="form-flex">
       <div class="input-field">
@@ -105,7 +124,10 @@
           :class="{err: $v.invoice.clientAddress.city.$error}"
           id="client_city"
           v-model="invoice.clientAddress.city"
+          @blur="$v.invoice.clientAddress.city.$touch()"
+          @focus="$v.invoice.clientAddress.city.$reset()"
         />
+        <small :class="{'err-mssg' : $v.invoice.clientAddress.city.$error}" class="hide">required</small>
       </div>
       <div class="input-field">
         <label class="form--text font-weight-bold" for="client_post_code"
@@ -118,7 +140,10 @@
           :class="{err: $v.invoice.clientAddress.postCode.$error}"
           id="client_post_code"
           v-model="invoice.clientAddress.postCode"
+          @blur="$v.invoice.clientAddress.postCode.$touch()"
+          @focus="$v.invoice.clientAddress.postCode.$reset()"
         />
+        <small :class="{'err-mssg' : $v.invoice.clientAddress.postCode.$error}" class="hide">required</small>
       </div>
       <div class="input-field">
         <label class="form--text font-weight-bold" for="client_country"
@@ -131,10 +156,13 @@
           :class="{err: $v.invoice.clientAddress.country.$error}"
           id="client_country"
           v-model="invoice.clientAddress.country"
+          @blur="$v.invoice.clientAddress.country.$touch()"
+          @focus="$v.invoice.clientAddress.country.$reset()"
         />
+        <small :class="{'err-mssg' : $v.invoice.clientAddress.country.$error}" class="hide">required</small>
       </div>
     </div>
-    <div class="input-field">
+    <div class="input-field mb-6">
       <v-menu
         v-model="menu"
         :close-on-content-click="false"
@@ -153,6 +181,8 @@
             color="due"
             class="secondary pt-2"
             :class="{err: $v.invoice.paymentDue.$error}"
+            @blur="$v.invoice.paymentDue.$touch()"
+            @focus="$v.invoice.paymentDue.$reset()"
             :value="formatDate"
             append-icon="mdi-calendar"
             readonly
@@ -165,8 +195,9 @@
           @input="menu = false"
         ></v-date-picker>
       </v-menu>
+      <small :class="{'err-mssg' : $v.invoice.paymentDue.$error}" class="hide">required</small>
     </div>
-    <div class="input-field">
+    <div class="input-field mb-6">
       <label class="form--text font-weight-bold" for="project_description"
         >Project Description</label
       >
@@ -177,10 +208,13 @@
         :class="{err: $v.invoice.description.$error}"
         id="project_description"
         v-model="invoice.description"
+        @blur="$v.invoice.description.$touch()"
+        @focus="$v.invoice.description.$reset()"
       />
+      <small :class="{'err-mssg' : $v.invoice.description.$error}" class="hide">required</small>
     </div>
     <div class="item_list">
-      <h3 class="font-weight-bold my-2 mt-4">Item List</h3>
+      <h3 class="font-weight-bold my-2 mt-7">Item List</h3>
       <div class="items" v-for="item in invoice.items" :key="item.index">
         <div class="input-field">
           <label class="form--text font-weight-bold" for="city"
@@ -252,7 +286,8 @@
         ><v-icon class="form--text">mdi-plus</v-icon> Add New Item</v-btn
       >
     </div>
-    <div class="submit-button button-flex secondary pa-2 py-4 rounded-lg">
+    <small class="mt-5 d-block">{{err}}</small>
+    <div class="submit-button button-flex secondary py-4 rounded-lg">
       <v-btn
         class="text-capitalize rounded-pill submit-btn due font-weight-bold"
         depressed
@@ -285,7 +320,7 @@ export default {
   data: () => ({
     menu: false,
     modal: false,
-    items: 1,
+    err: null,
     select: null,
     net: [1, 7, 14, 30],
     invoice: {
@@ -357,14 +392,9 @@ export default {
   },
   methods: {
     ...mapActions(["addInvoice"]),
-    // setName(value) {
-    //   this.invoice.clientName = value
-    //   this.$v.invoice.clientName.$touch()
-    // },
     submitForm() {
-      this.$v.$touch();
       if (this.$v.$invalid) {
-        console.log("oshi");
+        this.$v.$touch();
       } else {
         console.log("successful");
         this.addInvoice(this.invoice);
@@ -401,6 +431,7 @@ export default {
 <style scoped lang="scss">
 .input-field {
   margin: 1rem 0;
+  position: relative;
   input {
     border: none;
     outline: none;
@@ -421,6 +452,16 @@ export default {
   }
   .err {
     border: solid 1px #FA5D5D !important;
+  }
+  .err-mssg {
+    color: #FA5D5D !important;
+  }
+  .hide {
+    color: transparent;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    transition: color ease 0.4s;
   }
 }
 .form-flex {

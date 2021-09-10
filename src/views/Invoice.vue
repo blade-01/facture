@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Invoices from '@/components/invoices.vue'
+import Invoices from '@/components/invoice/invoices.vue'
 export default {
   name: 'Home',
   components: {

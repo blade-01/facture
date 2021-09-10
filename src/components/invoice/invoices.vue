@@ -9,9 +9,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import InvoiceList from './invoiceList.vue'
-import InvoiceFilter from './invoiceFilter.vue'
-import Navbar from './Navbar.vue'
+import InvoiceList from '@/components/invoice/invoiceList.vue'
+import InvoiceFilter from '@/components/invoice/invoiceFilter.vue'
+import Navbar from '@/components/reuseables_/Navbar.vue'
 export default {
   name: 'Invoices',
   components: {
