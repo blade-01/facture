@@ -155,7 +155,7 @@
             class="d-mobile secondary mt-2 px-5 py-5 rounded-lg mobile-button"
           >
             <v-btn
-              class="text-capitalize rounded-pill submit-btn due font-weight-bold white--text"
+              class="text-capitalize rounded-pill submit-btn edit font-weight-bold white--text"
               depressed
               @click="editInvoice"
               >Edit</v-btn
@@ -235,12 +235,19 @@ export default {
   font-size: 14px !important;
 }
 .stats {
+  padding: 0.2rem !important;
   & p {
     margin: 0 !important;
     padding: 0 !important;
   }
   .v-btn {
     margin: 0 !important;
+  }
+}
+.edit {
+  background: #252945 !important;
+  .theme--dark & {
+    background: #141625 !important;
   }
 }
 .flex-item {
@@ -264,12 +271,17 @@ export default {
   display: flex !important;
   justify-content: space-between;
   align-items: center;
+  margin-top: 2rem !important;
   .v-btn {
-    margin: 0.1rem;
-    flex-basis: 33.33%;
-    font-size: 12px;
-    padding: 0.5rem 1.5rem !important;
+    padding: 0.2rem 0.5rem !important;
+    margin: 0 !important;
+    color: #ffffff !important;
     font-weight: bolder !important;
+    font-size: 10px;
+    flex-basis: 32% !important;
+    &:nth-child(2) {
+      margin: 0 0.1rem !important;
+    }
   }
 }
 @media screen and (min-width: 700px) {

@@ -289,7 +289,7 @@
     <small class="mt-5 d-block">{{err}}</small>
     <div class="submit-button button-flex secondary py-4 rounded-lg">
       <v-btn
-        class="text-capitalize rounded-pill submit-btn due font-weight-bold"
+        class="text-capitalize rounded-pill submit-btn discard-btn font-weight-bold"
         depressed
         @click="goHome"
         >Discard</v-btn
@@ -497,11 +497,12 @@ export default {
   align-items: center;
   margin-top: 3rem !important;
   .v-btn {
-    padding: 0.2rem 0.3rem !important;
+    padding: 0.2rem 0.5rem !important;
     margin: 0 !important;
     color: #ffffff !important;
     font-weight: bolder !important;
-    font-size: 12px;
+    font-size: 10px;
+    flex-basis: 30% !important;
     &:nth-child(2) {
       margin: 0 0.1rem !important;
     }
@@ -530,6 +531,12 @@ export default {
   margin: 1rem 0 0 0 !important;
   padding: 0 !important;
 }
+.discard-btn {
+  background: #252945 !important;
+  .theme--dark & {
+    background: #141625 !important;
+  }
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -550,7 +557,10 @@ input[type="number"] {
   }
   .button-flex {
     justify-content: flex-end;
+    padding: 1rem !important;
     .v-btn {
+      padding: 1rem !important;
+      flex-basis: unset !important;
       &:nth-child(2) {
         margin: 0 0.5rem !important;
       }

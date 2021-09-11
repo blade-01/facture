@@ -6,27 +6,26 @@
   flat
   >
   <router-link to="/">
-    <v-btn icon class="btn pa-5">
-      <v-img
+    <div class="logo-wrapper">
+      <img
         alt="fature_logo"
-        contain
-        src="@/assets/img/logo.svg"
-        transition="scale-transition"
-        width="40"
+        src="@/assets/img/logo-desktop.svg"
       />
-    </v-btn>
+    </div>
   </router-link>
   <v-spacer></v-spacer>
-  <v-btn @click="switchTheme" icon>
-    <v-icon v-if="$vuetify.theme.dark" class="icon">mdi-white-balance-sunny</v-icon>
-    <v-icon v-else class="icon">mdi-moon-waxing-crescent</v-icon>
-  </v-btn>
-  <img
-    class="avatar ml-4"
-    alt="avatar"
-    src="@/assets/img/image-avatar.jpg"
-    width="40"
-  />
+  <div class="pr-3 pt-4 d-flex justify-space-between align-center">
+    <v-btn @click="switchTheme" icon>
+      <v-icon v-if="$vuetify.theme.dark" class="icon">mdi-white-balance-sunny</v-icon>
+      <v-icon v-else class="icon">mdi-moon-waxing-crescent</v-icon>
+    </v-btn>
+    <img
+      class="avatar ml-4"
+      alt="avatar"
+      src="@/assets/img/image-avatar.jpg"
+      width="40"
+    />
+  </div>
 </v-app-bar>
 </template>
 
@@ -53,6 +52,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.logo-wrapper {
+  background: radial-gradient(circle at bottom center, #7c5dfa, #270561 90px) !important;
+  position: absolute;
+  top: 0 !important;
+  left: 0 !important;
+  height: 72px;
+  width: 72px;
+  border-radius: 0 20px 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 30px !important;
+  }
+}
 .icon {
   color: #7e88c3 !important;
 }
@@ -61,7 +75,7 @@ export default {
 }
 .v-app-bar {
   height: 72px !important;
-  padding: 0.6rem !important;
+  // padding: 0.6rem !important;
   .v-toolbar__content {
     padding: 0 !important;
     height: 100% !important;

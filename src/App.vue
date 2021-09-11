@@ -59,6 +59,12 @@ input:-webkit-autofill:focus {
     -webkit-text-fill-color: #252945;
   }
 }
+a {
+  text-decoration: none;
+}
+.v-card {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -100px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px !important;
+}
 .status {
   width: 100px;
   font-weight: bold;
@@ -93,9 +99,6 @@ input:-webkit-autofill:focus {
   &.draft {
     background-color: #424761;
   }
-}
-a {
-  text-decoration: none;
 }
 .d-mobile {
   display: block !important;
