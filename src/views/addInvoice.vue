@@ -82,8 +82,8 @@ export default {
   }
   .close {
     position: absolute;
-    right: 35%;
-    top: 12%;
+    right: 30%;
+    top: 10%;
     border: solid 2px #7c5dfa;
     transition: ease background 0.5s;
     cursor: pointer;

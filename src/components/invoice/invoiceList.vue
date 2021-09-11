@@ -1,7 +1,7 @@
 <template>
   <div class="invoice-wrapper px-2">
     <div class="d-mobile">
-      <v-card class="my-4 px-5 pb-2 pt-5 secondary rounded-lg invoice-card" v-for="invoice in allInvoices" :key="invoice.id" @click="newPage(invoice.id)" elevation="1">
+      <v-card class="my-4 px-5 pb-2 pt-5 secondary rounded-lg invoice-card" v-for="invoice in allInvoices" :key="invoice.id" @click="newPage(invoice.id)">
         <div class="d-flex justify-space-between mb-3 align-center">
           <p class="font-weight-bold"><span class="hash">#</span>{{invoice.id}}</p>
           <p>{{invoice.clientName}}</p>
@@ -16,7 +16,7 @@
       </v-card>
     </div>
     <div class="d-desktop">
-      <v-card class="my-4 px-5 pa-2 py-4 secondary rounded-lg invoice-card card-desktop main-flex" v-for="invoice in allInvoices" :key="invoice.index" @click="newPage(invoice.id)" elevation="1">
+      <v-card class="my-4 px-5 pa-2 py-4 secondary rounded-lg invoice-card card-desktop main-flex" v-for="invoice in allInvoices" :key="invoice.index" @click="newPage(invoice.id)">
         <div class="left flex-item">
           <p class="font-weight-bold"><span class="hash">#</span>{{invoice.id}}</p>
           <p class="due--text">Due {{formatDate(invoice.paymentDue)}}</p>
