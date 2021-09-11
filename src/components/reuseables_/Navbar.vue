@@ -23,7 +23,6 @@
       class="avatar ml-4"
       alt="avatar"
       src="@/assets/img/image-avatar.jpg"
-      width="40"
     />
   </div>
 </v-app-bar>
@@ -53,7 +52,7 @@ export default {
 
 <style scoped lang="scss">
 .logo-wrapper {
-  background: radial-gradient(circle at bottom center, #7c5dfa, #270561 90px) !important;
+  background: radial-gradient(circle, #7c5dfa, #270561 98px) !important;
   position: absolute;
   top: 0 !important;
   left: 0 !important;
@@ -69,20 +68,21 @@ export default {
 }
 .icon {
   color: #7e88c3 !important;
+  font-size: 18px !important;
 }
 .navbar {
   background: #252945 !important;
 }
 .v-app-bar {
   height: 72px !important;
-  // padding: 0.6rem !important;
   .v-toolbar__content {
     padding: 0 !important;
     height: 100% !important;
   }
 }
 .v-btn {
-  border-right: dashed 2px #7e88c3;
+  border-radius: 0 !important;
+  border-right: dashed 1px #7e88c3;
 }
 .avatar {
   border-radius: 50%;
