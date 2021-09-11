@@ -33,8 +33,10 @@
 
 ## Overview
 
-![Home Page](/src/assets/img/Screenshot.png)
-![Picture Details](/src/assets/img/Screenshot-details.png)
+![Home Page](/src/assets/img/Home.png)
+![Add Invoice](/src/assets/img/add_invoice.png)
+![Single Invoice](/src/assets/img/single_invoice.png)
+![Edit Invoice](/src/assets/img/edit_invoice.png)
 
 Unsplash Clone but with Unsplash API integration.
 
