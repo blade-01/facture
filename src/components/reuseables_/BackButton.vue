@@ -5,7 +5,7 @@
     @click="goHome"
   >
     <v-icon class="btn--text">mdi-chevron-left</v-icon>
-    Go Back
+    Go back
   </v-btn>
 </template>
 
@@ -25,5 +25,7 @@ export default {
 .back-btn {
   margin: 0 0 0.6rem 0 !important;
   padding: 0 !important;
+  font-weight: bolder;
+  text-transform: unset !important;
 }
 </style>

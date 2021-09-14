@@ -287,7 +287,7 @@
       >
     </div>
     <small class="mt-5 d-block">{{err}}</small>
-    <div class="submit-button button-flex secondary py-4 rounded-lg">
+    <div class="submit-button button-flex secondary py-4 rounded-lg px-2">
       <v-btn
         class="text-capitalize rounded-pill submit-btn discard-btn font-weight-bold"
         depressed
@@ -295,16 +295,10 @@
         >Discard</v-btn
       >
       <v-btn
-        class="text-capitalize rounded-pill submit-btn form font-weight-bold"
-        depressed
-        @click="onDraft"
-        >Save as Draft</v-btn
-      >
-      <v-btn
         class="text-capitalize rounded-pill submit-btn btn font-weight-bold"
         depressed
         @click="submitForm"
-        >save & Send</v-btn
+        >Save Changes</v-btn
       >
     </div>
   </v-form>
@@ -415,10 +409,6 @@ export default {
     deleteItem(i) {
       this.invoice.items.splice(this.invoice.items.indexOf(i), 1);
     },
-    onDraft() {
-      this.invoice.status = "draft";
-      this.submitForm();
-    },
     goHome() {
       this.$router.push({name: 'single'});
     },
@@ -496,16 +486,15 @@ export default {
 }
 .button-flex {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin-top: 3rem !important;
   .v-btn {
-    padding: 0.2rem 0.5rem !important;
+    padding: 0.5rem !important;
     margin: 0 !important;
     color: #ffffff !important;
     font-weight: bolder !important;
-    font-size: 10px;
-    flex-basis: 30% !important;
+    font-size: 12px;
     &:nth-child(2) {
       margin: 0 0.1rem !important;
     }

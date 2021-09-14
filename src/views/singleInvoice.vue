@@ -19,7 +19,7 @@
             </div>
             <div class="button-tag d-desktop">
               <v-btn
-                class="text-capitalize rounded-pill submit-btn due font-weight-bold white--text"
+                class="text-capitalize rounded-pill submit-btn edit font-weight-bold white--text"
                 depressed
                 @click="editInvoice"
                 >Edit</v-btn

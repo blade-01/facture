@@ -27,9 +27,6 @@ export default {
   },
   computed: {
     ...mapGetters(['allInvoices'])
-  },
-  mounted() {
-
   }
 }
 </script>
