@@ -411,9 +411,6 @@ export default {
     deleteItem(i) {
       this.invoice.items.splice(this.invoice.items.indexOf(i), 1);
     },
-    showItem() {
-      console.log(this.invoice.net);
-    },
     onDraft() {
       this.invoice.status = "draft";
       this.submitForm();

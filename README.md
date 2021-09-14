@@ -38,9 +38,6 @@
 ![Single Invoice](/src/assets/img/single_invoice.jpg)
 ![Edit Invoice](/src/assets/img/edit_invoice.jpg)
 
-Unsplash Clone but with Unsplash API integration.
-
-
 ### Built With
 
 - Semantic HTML5 markup

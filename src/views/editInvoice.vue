@@ -5,8 +5,7 @@
       <v-container>
         <Back class="d-mobile" />
         <div class="d-flex align-center mt-5">
-          <h1>Edit</h1>
-          <p><span class="hash">#</span>{{id}}</p>
+          <h1>Edit <span class="hash">#</span>{{id}}</h1>
         </div>
         <Form />
       </v-container>  
@@ -50,13 +49,8 @@ export default {
     background: #7c5dfa;
     border-radius: 50px;
   }
-  p {
-    margin: 0 0 0 0.5rem !important;
-    padding: 0 !important;
-    font-size: 14px;
-    font-weight: bold;
-  }
   .hash {
+    margin: 0 0 0 0.5rem !important;
     color: #7e88c3;
   }
 } 
