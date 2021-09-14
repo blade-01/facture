@@ -27,7 +27,7 @@
               <v-btn
                 class="text-capitalize rounded-pill submit-btn del font-weight-bold white--text"
                 depressed
-                @click="onDelete"
+                @click="showModal"
                 >Delete</v-btn
               >
               <v-btn
@@ -163,7 +163,7 @@
             <v-btn
               class="text-capitalize rounded-pill submit-btn del font-weight-bold white--text"
               depressed
-              @click="onDelete"
+              @click="showModal"
               >Delete</v-btn
             >
             <v-btn
@@ -176,6 +176,26 @@
           </v-card>
         </div>
       </v-container>
+    </div>
+    <div class="modal" v-show="modal">
+      <div class="modal-content secondary">
+        <p class="font-weight-bold">Confirm Deletion</p>
+        <p class="font-weight-light">Are you sure you want to delete invoice <span class="hash">#</span>{{id}}? This action cannot be reversed.</p>
+        <div class="secondary d-flex justify-end align-center pt-5">
+          <v-btn
+            class="text-capitalize rounded-pill submit-btn edit font-weight-bold white--text mr-2"
+            depressed
+            @click="cancel"
+            >Cancel</v-btn
+          >
+          <v-btn
+            class="text-capitalize rounded-pill submit-btn del font-weight-bold white--text"
+            depressed
+            @click="onDelete"
+            >Delete</v-btn
+          >
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -195,6 +215,11 @@ export default {
     Nav,
     Back,
   },
+  data() {
+    return {
+      modal: false,
+    }
+  },
   computed: {
     ...mapGetters(["allInvoices", "filterById"]),
   },
@@ -203,6 +228,12 @@ export default {
     onDelete() {
       this.deleteInvoice(this.id);
       this.$router.push("/");
+    },
+    showModal() {
+      this.modal = !this.modal
+    },
+    cancel() {
+      this.modal = !this.modal
     },
     onMark() {
       this.markAsPaid({
@@ -281,6 +312,39 @@ export default {
     flex-basis: 32% !important;
     &:nth-child(2) {
       margin: 0 0.1rem !important;
+    }
+  }
+}
+.modal {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  top: 63px;
+  left: 0;
+  overflow: hidden;
+  & p {
+    font-size: 15px;  
+    line-height: 1.5; 
+  }
+  & p:first-child {
+    font-size: 20px;
+  }
+  &-content {
+    position: fixed;
+    padding: 1rem;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    transform: translate(-50%, -50%) scale(0);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -100px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px !important;
+    animation: scaleIn 0.4s forwards;
+  }
+  @keyframes scaleIn {
+    to {
+      transform: translate(-50%, -50%) scale(1);
     }
   }
 }
