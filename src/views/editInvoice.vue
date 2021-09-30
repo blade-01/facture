@@ -1,34 +1,38 @@
 <template>
   <div class="wrapper">
-    <v-icon class="white--text close rounded-circle pa-2 d-desktop" @click="goHome">mdi-close</v-icon>
+    <v-icon
+      class="white--text close rounded-circle pa-2 d-desktop"
+      @click="goHome"
+      >mdi-close</v-icon
+    >
     <div class="add primary px-2">
       <v-container>
         <Back class="d-mobile" />
         <div class="d-flex align-center mt-5">
-          <h1>Edit <span class="hash">#</span>{{id}}</h1>
+          <h1>Edit <span class="hash">#</span>{{ id }}</h1>
         </div>
         <Form />
-      </v-container>  
+      </v-container>
     </div>
   </div>
 </template>
 
 <script>
-import Form from '@/components/forms/editForm.vue'
-import Back from '@/components/reuseables_/BackButton.vue'
+import Form from "@/components/forms/editForm.vue";
+import Back from "@/components/reuseables_/BackButton.vue";
 export default {
-  name: 'Edit',
-  props: ['id'],
+  name: "Edit",
+  props: ["id"],
   components: {
     Form,
-    Back
+    Back,
   },
   methods: {
     goHome() {
-      this.$router.push({name: 'single'})
+      this.$router.push({ name: "single" });
     },
   },
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -53,7 +57,7 @@ export default {
     margin: 0 0 0 0.5rem !important;
     color: #7e88c3;
   }
-} 
+}
 @keyframes slideUp {
   to {
     bottom: 0;
@@ -71,7 +75,7 @@ export default {
     border-radius: 0 20px 20px 0;
     animation: fadeIn 0.4s forwards;
     opacity: 0;
-  } 
+  }
   @keyframes fadeIn {
     to {
       opacity: 1;

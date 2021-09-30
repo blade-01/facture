@@ -5,19 +5,16 @@
 </template>
 
 <script>
-import Invoices from '@/components/invoice/invoices.vue'
+import Invoices from "@/components/invoice/invoices.vue";
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Invoices,
   },
   data() {
-    return {
-    }
+    return {};
   },
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,24 +1,22 @@
 <template>
   <v-app>
     <v-main class="primary text--text">
-      <router-view/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
 import data from "@/json/data.json";
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 export default {
-  name: 'App',
-  components: {
-
-  },
+  name: "App",
+  components: {},
   data: () => ({
     //
   }),
   methods: {
-    ...mapActions(['setInvoice']),
+    ...mapActions(["setInvoice"]),
   },
   mounted() {
     if (localStorage.getItem("invoices")) {
@@ -26,14 +24,14 @@ export default {
     } else {
       this.setInvoice(data);
     }
-  }
+  },
 };
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;400&display=swap");
 .v-application {
-  font-family: 'Spartan', sans-serif !important;
+  font-family: "Spartan", sans-serif !important;
   font-size: 12px !important;
   line-height: 1.3 !important;
   text-rendering: optimizeLegibility !important;
@@ -63,7 +61,8 @@ a {
   text-decoration: none;
 }
 .v-card {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -100px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px !important;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -100px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -60px !important;
 }
 .status {
   width: 100px;
