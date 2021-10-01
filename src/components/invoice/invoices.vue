@@ -3,7 +3,7 @@
     <router-view></router-view>
     <Navbar />
     <invoice-filter />
-    <div v-if="filter.length">
+    <div v-if="allInvoices.length">
       <invoice-list />
     </div>
     <div v-else class="text-center">
@@ -26,7 +26,7 @@ export default {
     InvoiceFilter,
   },
   computed: {
-    ...mapGetters(["allInvoices", "filter"]),
+    ...mapGetters(["allInvoices"]),
   },
 };
 </script>

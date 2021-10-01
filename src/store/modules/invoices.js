@@ -39,9 +39,6 @@ const actions = {
     commit("updateInvoice", { id, data });
     saveInvoice();
   },
-  updateFilter({ commit }, data) {
-    commit("updateFilter", data);
-  },
   filterByStatus({ commit }, status) {
     commit("filterByStatus", status);
   },
@@ -70,9 +67,6 @@ const mutations = {
   updateInvoice(state, { id, data }) {
     const index = state.invoices.findIndex((invoice) => invoice.id === id);
     state.invoices[index] = data;
-  },
-  updateFilter(state, payload) {
-    state.filter = payload;
   },
   filterByStatus(state, status) {
     if (status == "all") {
