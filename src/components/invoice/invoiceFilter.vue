@@ -70,10 +70,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["allInvoices", "filter"])
+    ...mapGetters(["filter"])
   },
   methods: {
-    ...mapActions(["filterByStatus", "updateFilter"]),
+    ...mapActions(["filterByStatus"]),
     newInvoice() {
       this.$router.push({ name: "add" });
     },

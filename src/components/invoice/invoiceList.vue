@@ -63,7 +63,8 @@
         </div>
       </v-card>
     </div>
-  </div>
+    <div v-if="!filter.length" class="text-center mt-10 pt-10">There's no invoice for this status yet</div>
+  </div> 
 </template>
 
 <script>
@@ -77,7 +78,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(["filter", "allInvoices", "filteredInvoice"]),
+    ...mapGetters(["filter", "allInvoices"]),
   },
   methods: {
     ...mapActions(["onLoad"]),
