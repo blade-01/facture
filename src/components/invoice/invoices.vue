@@ -3,32 +3,32 @@
     <router-view></router-view>
     <Navbar />
     <invoice-filter />
-    <div v-if="allInvoices.length">
+    <div v-if="filter.length">
       <invoice-list />
     </div>
     <div v-else class="text-center">
-      <img src="@/assets/img/empty.png" class="mt-9 mb-5"/>
+      <img src="@/assets/img/empty.png" class="mt-9 mb-5" />
       <p>You've got no invoice here fam, add something</p>
     </div>
   </v-container>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import InvoiceList from '@/components/invoice/invoiceList.vue'
-import InvoiceFilter from '@/components/invoice/invoiceFilter.vue'
-import Navbar from '@/components/reuseables_/Navbar.vue'
+import { mapGetters } from "vuex";
+import InvoiceList from "@/components/invoice/invoiceList.vue";
+import InvoiceFilter from "@/components/invoice/invoiceFilter.vue";
+import Navbar from "@/components/reuseables_/Navbar.vue";
 export default {
-  name: 'Invoices',
+  name: "Invoices",
   components: {
     Navbar,
     InvoiceList,
-    InvoiceFilter
+    InvoiceFilter,
   },
   computed: {
-    ...mapGetters(['allInvoices'])
-  }
-}
+    ...mapGetters(["allInvoices", "filter"]),
+  },
+};
 </script>
 
 <style scoped>

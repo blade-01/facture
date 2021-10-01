@@ -1,53 +1,48 @@
 <template>
-  <v-app-bar
-  app
-  color="navbar"
-  dark
-  flat
-  >
-  <router-link to="/">
-    <div class="logo-wrapper">
+  <v-app-bar app color="navbar" dark flat>
+    <router-link to="/">
+      <div class="logo-wrapper">
+        <img alt="fature_logo" src="@/assets/img/logo-desktop.svg" />
+      </div>
+    </router-link>
+    <v-spacer></v-spacer>
+    <div class="pr-3 pt-4 d-flex justify-space-between align-center">
+      <v-btn @click="switchTheme" icon>
+        <v-icon v-if="$vuetify.theme.dark" class="icon"
+          >mdi-white-balance-sunny</v-icon
+        >
+        <v-icon v-else class="icon">mdi-moon-waxing-crescent</v-icon>
+      </v-btn>
       <img
-        alt="fature_logo"
-        src="@/assets/img/logo-desktop.svg"
+        class="avatar ml-4"
+        alt="avatar"
+        src="@/assets/img/image-avatar.jpg"
       />
     </div>
-  </router-link>
-  <v-spacer></v-spacer>
-  <div class="pr-3 pt-4 d-flex justify-space-between align-center">
-    <v-btn @click="switchTheme" icon>
-      <v-icon v-if="$vuetify.theme.dark" class="icon">mdi-white-balance-sunny</v-icon>
-      <v-icon v-else class="icon">mdi-moon-waxing-crescent</v-icon>
-    </v-btn>
-    <img
-      class="avatar ml-4"
-      alt="avatar"
-      src="@/assets/img/image-avatar.jpg"
-    />
-  </div>
-</v-app-bar>
+  </v-app-bar>
 </template>
 
 <script>
 export default {
-  name: 'Navbar',
+  name: "Navbar",
   data() {
-    return {
-    }
+    return {};
   },
   methods: {
     switchTheme() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-      this.saveTheme()
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      this.saveTheme();
     },
     saveTheme() {
-      localStorage.setItem('theme', JSON.stringify(this.$vuetify.theme.dark))
+      localStorage.setItem("theme", JSON.stringify(this.$vuetify.theme.dark));
     },
   },
   mounted() {
-    this.$vuetify.theme.dark = JSON.parse(localStorage.getItem('theme') || JSON.stringify(this.$vuetify.theme.dark))
-  }
-}
+    this.$vuetify.theme.dark = JSON.parse(
+      localStorage.getItem("theme") || JSON.stringify(this.$vuetify.theme.dark)
+    );
+  },
+};
 </script>
 
 <style scoped lang="scss">

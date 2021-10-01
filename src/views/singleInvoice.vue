@@ -180,7 +180,10 @@
     <div class="modal" v-show="modal">
       <div class="modal-content secondary">
         <p class="font-weight-bold">Confirm Deletion</p>
-        <p class="font-weight-light">Are you sure you want to delete invoice <span class="hash">#</span>{{id}}? This action cannot be reversed.</p>
+        <p class="font-weight-light">
+          Are you sure you want to delete invoice <span class="hash">#</span
+          >{{ id }}? This action cannot be reversed.
+        </p>
         <div class="secondary d-flex justify-end align-center pt-5">
           <v-btn
             class="text-capitalize rounded-pill submit-btn edit font-weight-bold white--text mr-2"
@@ -218,10 +221,10 @@ export default {
   data() {
     return {
       modal: false,
-    }
+    };
   },
   computed: {
-    ...mapGetters(["allInvoices", "filterById"]),
+    ...mapGetters(["filterById"]),
   },
   methods: {
     ...mapActions(["deleteInvoice", "markAsPaid"]),
@@ -230,10 +233,10 @@ export default {
       this.$router.push("/");
     },
     showModal() {
-      this.modal = !this.modal
+      this.modal = !this.modal;
     },
     cancel() {
-      this.modal = !this.modal
+      this.modal = !this.modal;
     },
     onMark() {
       this.markAsPaid({
@@ -242,11 +245,11 @@ export default {
       });
     },
     editInvoice() {
-      this.$router.push({ name: "edit" })
-    }
+      this.$router.push({ name: "edit" });
+    },
   },
   created() {
-    this.toTop()
+    this.toTop();
   },
   mixins: [currencyFormatter, dateFormatter, grandTotal, scrollToTop],
 };
@@ -325,8 +328,8 @@ export default {
   left: 0;
   overflow: hidden;
   & p {
-    font-size: 15px;  
-    line-height: 1.5; 
+    font-size: 15px;
+    line-height: 1.5;
   }
   & p:first-child {
     font-size: 20px;
@@ -339,7 +342,8 @@ export default {
     left: 50%;
     width: 300px;
     transform: translate(-50%, -50%) scale(0);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -100px, rgba(0, 0, 0, 0.3) 0px 30px 60px -60px !important;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -100px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -60px !important;
     animation: scaleIn 0.4s forwards;
   }
   @keyframes scaleIn {
